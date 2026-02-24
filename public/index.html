@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html lang="bn">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Bangla Word Meaning Search</title>
+    <link rel="stylesheet" href="style.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Hind+Siliguri:wght@300;400;500;600;700&family=Outfit:wght@300;400;600;800&display=swap" rel="stylesheet">
+</head>
+<body>
+    <div class="container">
+        <header>
+            <h1>শব্দার্থ সন্ধান</h1>
+            <p>আধুনিক কৃত্রিম বুদ্ধিমত্তার মাধ্যমে বাংলা শব্দের সঠিক অর্থ খুঁজুন</p>
+        </header>
+
+        <div class="search-box">
+            <input type="text" id="searchInput" placeholder="বাংলা শব্দ লিখুন..." autocomplete="off">
+            <button id="searchBtn">
+                <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="11" cy="11" r="8"></circle><line x1="21" y1="21" x2="16.65" y2="16.65"></line></svg>
+            </button>
+        </div>
+
+        <div id="loader" class="loader hidden">
+            <div class="spinner"></div>
+            <p>উত্তরের জন্য কিছুক্ষণ অপেক্ষা করুন...</p>
+        </div>
+
+        <div id="result" class="result-container hidden">
+            <div class="result-header">
+                <h2 id="resultWord"></h2>
+                <span id="pronunciation" class="pronunciation"></span>
+            </div>
+            
+            <div class="result-section">
+                <h3><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M4 19.5A2.5 2.5 0 0 1 6.5 17H20"></path><path d="M6.5 2H20v20H6.5A2.5 2.5 0 0 1 4 19.5v-15A2.5 2.5 0 0 1 6.5 2z"></path></svg> অর্থ (Meaning)</h3>
+                <p id="meaningText" class="meaning"></p>
+            </div>
+
+            <div class="result-grid">
+                <div class="result-section">
+                    <h3><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"></path></svg> উদাহরণ (Examples)</h3>
+                    <ul id="exampleList"></ul>
+                </div>
+
+                <div class="result-section">
+                    <h3><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 2a10 10 0 0 1 10 10 10 10 0 0 1-10 10 10 10 0 0 1-10-10 10 10 0 0 1 10-10z"></path><path d="M12 8v4"></path><path d="M12 16h.01"></path></svg> সমার্থক শব্দ (Synonyms)</h3>
+                    <div id="synonymContainer" class="tags"></div>
+                </div>
+            </div>
+
+            <div class="result-footer">
+                <span id="sourceInfo"></span>
+            </div>
+        </div>
+
+        <div id="error" class="error-msg hidden"></div>
+    </div>
+
+    <script src="script.js"></script>
+</body>
+</html>

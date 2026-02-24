@@ -1,0 +1,62 @@
+{
+  "বিদ্যুৎ": {
+    "word": "বিদ্যুৎ",
+    "meaning": "তড়িৎ শক্তি বা মেঘের ঘর্ষণ থেকে উৎপন্ন আলো",
+    "pronunciation": "Biddut",
+    "examples": [
+      "আজ বিদ্যুৎ নেই। (There is no electricity today.)",
+      "আকাশে বিদ্যুৎ চমকাচ্ছে। (Lightning is flashing in the sky.)",
+      "আমাদের বিদ্যুৎ সাশ্রয় করা উচিত। (We should save electricity.)"
+    ],
+    "synonyms": [
+      "তড়িৎ",
+      "বিজলি",
+      "ক্ষণপ্রভা"
+    ]
+  },
+  "ছিদ্রান্বেষণ": {
+    "word": "ছিদ্রান্বেষণ",
+    "meaning": "অন্যের দোষ বা খুঁত খুঁজে বের করা",
+    "pronunciation": "Chid-ran-be-shon",
+    "examples": [
+      "অন্যের ছিদ্রান্বেষণ করা ভালো অভ্যাস নয়। (Finding faults in others is not a good habit.)",
+      "সে সব সময় অন্যের ছিদ্রান্বেষণ করতে ব্যস্ত থাকে। (He is always busy finding faults in others.)",
+      "ছিদ্রান্বেষণ না করে নিজের কাজে মন দাও। (Focus on your own work instead of fault-finding.)"
+    ],
+    "synonyms": [
+      "দোষানুসন্ধান",
+      "খুঁত ধরা",
+      "রন্ধ্রান্বেষণ"
+    ]
+  },
+  "জন্য": {
+    "word": "জন্য",
+    "meaning": "উদ্দেশ্যে বা কারণে (For / Because of)",
+    "pronunciation": "Jon-no",
+    "examples": [
+      "আমি তোমার জন্য অপেক্ষা করছি। (I am waiting for you.)",
+      "সে কাজের জন্য বাইরে গেছে। (He has gone out for work.)",
+      "দেশের জন্য প্রাণ দেওয়া গৌরবের। (Giving one's life for the country is glorious.)"
+    ],
+    "synonyms": [
+      "নিমিত্ত",
+      "তরে",
+      "লাগি"
+    ]
+  },
+  "জন্": {
+    "word": "জন্",
+    "meaning": "ব্যক্তি বা লোক",
+    "pronunciation": "Jon",
+    "examples": [
+      "সেখানে দশ জন লোক ছিল। (There were ten people there.)",
+      "প্রতি জন নাগরিকের ভোট দেওয়ার অধিকার আছে। (Every citizen has the right to vote.)",
+      "জনসাধারণের কল্যাণে আমাদের কাজ করা উচিত। (We should work for the welfare of the general public.)"
+    ],
+    "synonyms": [
+      "ব্যক্তি",
+      "লোক",
+      "মানুষ"
+    ]
+  }
+}
