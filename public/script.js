@@ -4,6 +4,9 @@ document.addEventListener('DOMContentLoaded', () => {
     const resultContainer = document.getElementById('result');
     const loader = document.getElementById('loader');
     const errorMsg = document.getElementById('error');
+    const historyContainer = document.getElementById('history');
+    const historyList = document.getElementById('historyList');
+    const clearHistoryBtn = document.getElementById('clearHistory');
 
     // Result elements
     const resultWord = document.getElementById('resultWord');
@@ -12,6 +15,48 @@ document.addEventListener('DOMContentLoaded', () => {
     const exampleList = document.getElementById('exampleList');
     const synonymContainer = document.getElementById('synonymContainer');
     const sourceInfo = document.getElementById('sourceInfo');
+
+    const MAX_HISTORY = 10;
+
+    const getHistory = () => {
+        const history = localStorage.getItem('searchHistory');
+        return history ? JSON.parse(history) : [];
+    };
+
+    const saveToHistory = (word) => {
+        let history = getHistory();
+        // Remove word if it already exists (to move it to top)
+        history = history.filter(item => item !== word);
+        // Add to top
+        history.unshift(word);
+        // Limit to MAX_HISTORY
+        if (history.length > MAX_HISTORY) {
+            history = history.slice(0, MAX_HISTORY);
+        }
+        localStorage.setItem('searchHistory', JSON.stringify(history));
+        renderHistory();
+    };
+
+    const renderHistory = () => {
+        const history = getHistory();
+        if (history.length === 0) {
+            historyContainer.classList.add('hidden');
+            return;
+        }
+
+        historyList.innerHTML = '';
+        history.forEach(word => {
+            const item = document.createElement('div');
+            item.className = 'history-item';
+            item.textContent = word;
+            item.addEventListener('click', () => {
+                searchInput.value = word;
+                searchWord();
+            });
+            historyList.appendChild(item);
+        });
+        historyContainer.classList.remove('hidden');
+    };
 
     const searchWord = async () => {
         const word = searchInput.value.trim();
@@ -35,6 +80,7 @@ document.addEventListener('DOMContentLoaded', () => {
 
             if (response.ok) {
                 displayResult(data);
+                saveToHistory(word);
             } else {
                 showError(data.error || 'খোঁজার সময় একটি সমস্যা হয়েছে।');
             }
@@ -92,6 +138,12 @@ document.addEventListener('DOMContentLoaded', () => {
         }
     });
 
-    // Focus input on load
+    clearHistoryBtn.addEventListener('click', () => {
+        localStorage.removeItem('searchHistory');
+        renderHistory();
+    });
+
+    // Initial load
+    renderHistory();
     searchInput.focus();
 });

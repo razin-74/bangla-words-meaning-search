@@ -58,5 +58,20 @@
       "লোক",
       "মানুষ"
     ]
+  },
+  "আধুনিক": {
+    "word": "আধুনিক",
+    "meaning": "বর্তমান সময়ের বা নতুন",
+    "pronunciation": "Adhunik",
+    "examples": [
+      "আধুনিক যুগে প্রযুক্তির ব্যবহার অনেক বেড়েছে। (The use of technology has increased a lot in the modern era.)",
+      "তার চিন্তাধারা খুব আধুনিক। (His way of thinking is very modern.)",
+      "এই ভবনটি আধুনিক স্থাপত্যের একটি উদাহরণ। (This building is an example of modern architecture.)"
+    ],
+    "synonyms": [
+      "সাম্প্রতিক",
+      "নব্য",
+      "নতুন"
+    ]
   }
 }
