@@ -73,5 +73,65 @@
       "নব্য",
       "নতুন"
     ]
+  },
+  "resilient": {
+    "word": "resilient",
+    "meaning": "সহনশীল",
+    "pronunciation": "shohon shil",
+    "examples": [
+      "সে খুব সহনশীল। (He is very resilient.)",
+      "বাংলাদেশী জনগণ অনেক সহনশীল। (Bangladeshi people are very resilient.)",
+      "সহনশীল মন মানসিক চ্যালেঞ্জ মোকাবেলায় সাহায্য করে। (A resilient mind helps in facing mental challenges.)"
+    ],
+    "synonyms": [
+      "দৃঢ়",
+      "অবিচল",
+      "ধৈর্যবান"
+    ]
+  },
+  "স্পষ্ট": {
+    "word": "স্পষ্ট",
+    "meaning": "স্পষ্ট বা পরিষ্কার (যা সহজে বোঝা যায় বা স্পষ্টভাবে প্রকাশিত)",
+    "pronunciation": "sposht",
+    "examples": [
+      "তার উত্তরটি খুব স্পষ্ট ছিল। (His answer was very clear.)",
+      "এই নিয়মটি খুব স্পষ্টভাবে লেখা আছে। (This rule is written very clearly.)",
+      "সমস্যাটি স্পষ্টভাবে বোঝানো হয়েছে। (The problem has been explained clearly.)"
+    ],
+    "synonyms": [
+      "পরিষ্কার",
+      "জ্ঞাপক",
+      "স্পষ্টক"
+    ]
+  },
+  "সংজ্ঞা": {
+    "word": "সংজ্ঞা",
+    "meaning": "শব্দের অর্থ বা ব্যাখ্যা",
+    "pronunciation": "shong-gya",
+    "examples": [
+      "এই শব্দের সংজ্ঞা কী? (What is the definition of this word?)",
+      "সংশোধনের জন্য সংজ্ঞা প্রয়োজন। (Definition is needed for editing.)",
+      "বিশ্বকোষের সংজ্ঞা বিভিন্ন ভাষায় ভিন্ন হতে পারে। (The definition of a word can vary in different languages.)"
+    ],
+    "synonyms": [
+      "অর্থ",
+      "ব্যাখ্যা",
+      "সংজ্ঞায়ন"
+    ]
+  },
+  "অংশ": {
+    "word": "অংশ",
+    "meaning": "ভাগ, স্নigens (কোনো সমস্ত বস্তুর মধ্যে থেকে একটি ভাগ)",
+    "pronunciation": "ongsho",
+    "examples": [
+      "বইটি তিন অংশে বিভক্ত। (The book is divided into three parts.)",
+      "তিনি আমাদের অংশ। (He is one of us.)",
+      "মূলধনের অংশ। (A portion of the capital.)"
+    ],
+    "synonyms": [
+      "ভাগ",
+      "খণ্ড",
+      "উপাংশ"
+    ]
   }
 }

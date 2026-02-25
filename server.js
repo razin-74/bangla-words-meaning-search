@@ -38,12 +38,11 @@ const saveWord = async (wordData) => {
 };
 
 // AI Setup
-const genAI = process.env.GEMINI_API_KEY && process.env.GEMINI_API_KEY !== 'your_gemini_api_key'
-    ? new GoogleGenerativeAI(process.env.GEMINI_API_KEY)
-    : null;
+const OPENROUTER_API_KEY = process.env.OPENROUTER_API_KEY;
+const isDemoMode = !OPENROUTER_API_KEY || OPENROUTER_API_KEY === 'your_openrouter_api_key';
 
-if (!genAI) {
-    console.log('Running in DEMO MODE (No Gemini API Key provided)');
+if (isDemoMode) {
+    console.log('Running in DEMO MODE (No OpenRouter API Key provided)');
 }
 
 // API Routes
@@ -65,56 +64,74 @@ app.post('/api/search', async (req, res) => {
         }
 
         // 2. If not found and AI is available, call AI
-        if (genAI) {
-            console.log(`Searching AI for "${searchWord}"`);
+        if (!isDemoMode) {
+            console.log(`Searching AI (OpenRouter) for "${searchWord}"`);
             const prompt = `Provide the meaning in Bangla, pronunciation (phonetic in English), 3 examples (in Bangla with English translation in parentheses), and 3 synonyms (in Bangla) for the Bangla word: "${word}". JSON format: {"word": "${word}", "meaning": "Bangla meaning", "pronunciation": "pronunciation", "examples": ["sentence (translation)", ...], "synonyms": ["...", "...", "..."]}`;
+
+            // OpenRouter selection
+            const modelNames = [
+                "stepfun/step-3.5-flash:free",
+                "google/gemini-2.0-flash-001",
+                "openrouter/auto:free",
+                "google/gemma-2-9b-it:free",
+                "deepseek/deepseek-chat:free",
+                "mistralai/mistral-7b-instruct:free",
+                "microsoft/phi-3-mini-128k-instruct:free",
+                "openai/gpt-4o-mini"
+            ];
 
             let aiResult;
             let lastErrorMessage = "";
-            // List of models to try in order of preference
-            const modelsToTry = [
-                "gemini-1.5-flash",
-                "gemini-2.0-flash",
-                "gemini-flash-latest",
-                "gemini-pro-latest"
-            ];
 
-            for (const modelName of modelsToTry) {
+            for (const modelName of modelNames) {
                 try {
-                    console.log(`Attempting with model: ${modelName}`);
-                    const model = genAI.getGenerativeModel({
-                        model: modelName,
-                        generationConfig: {
-                            responseMimeType: "application/json",
-                            temperature: 0.1, // Lower temperature for faster, deterministic output
-                        }
+                    console.log(`Attempting OpenRouter model: ${modelName}`);
+                    const response = await fetch("https://openrouter.ai/api/v1/chat/completions", {
+                        method: "POST",
+                        headers: {
+                            "Authorization": `Bearer ${OPENROUTER_API_KEY}`,
+                            "Content-Type": "application/json",
+                            "HTTP-Referer": "http://localhost:3000", // Optional, for OpenRouter rankings
+                            "X-Title": "Bangla Word Meaning Search"      // Optional, for OpenRouter rankings
+                        },
+                        body: JSON.stringify({
+                            model: modelName,
+                            messages: [
+                                { role: "user", content: prompt }
+                            ],
+                            // Only use json_object if not using reasoning (StepFun free might not support both)
+                            ...(modelName.includes('stepfun') ? {} : { response_format: { type: "json_object" } }),
+                            temperature: 0.1,
+                            reasoning: { enabled: true }
+                        })
                     });
 
-                    const result = await model.generateContent(prompt);
-                    const response = await result.response;
-                    aiResult = JSON.parse(response.text());
+                    if (!response.ok) {
+                        const errorData = await response.json();
+                        throw new Error(errorData.error?.message || `HTTP error! status: ${response.status}`);
+                    }
+
+                    const data = await response.json();
+                    const content = data.choices[0].message.content;
+                    aiResult = JSON.parse(content);
 
                     if (aiResult) {
-                        console.log(`Success with model: ${modelName}`);
-                        break; // Success!
+                        console.log(`Success with OpenRouter model: ${modelName}`);
+                        break;
                     }
                 } catch (error) {
                     lastErrorMessage = error.message;
-                    console.log(`Model ${modelName} failed:`, lastErrorMessage);
-
-                    // If it's a quota error or overloaded, continue to next model
-                    // If it's something fatal (like invalid key), we might want to stop,
-                    // but for now, we'll try all available models.
+                    console.error(`OpenRouter model ${modelName} failed:`, lastErrorMessage);
                 }
             }
 
             if (!aiResult) {
                 let userMessage = 'An error occurred while searching for the word.';
-                if (lastErrorMessage.includes('429') || lastErrorMessage.toLowerCase().includes('quota')) {
+                if (lastErrorMessage.toLowerCase().includes('429') || lastErrorMessage.toLowerCase().includes('quota')) {
                     userMessage = 'The AI is currently busy. Please try again in a minute.';
                 }
 
-                console.error('All models failed. Final error:', lastErrorMessage);
+                console.error('All OpenRouter models failed. Final error:', lastErrorMessage);
                 return res.status(503).json({ error: userMessage });
             }
 
@@ -133,7 +150,7 @@ app.post('/api/search', async (req, res) => {
             return res.json({
                 source: 'demo',
                 word: word,
-                meaning: `এটি একটি উদাহরণ (নিবন্ধিত কী নেই)। "${word}" এর অর্থ এখানে প্রদর্শিত হছে।`,
+                meaning: `এটি একটি উদাহরণ (OpenRouter API কী নেই)। "${word}" এর অর্থ এখানে প্রদর্শিত হছে।`,
                 pronunciation: word,
                 examples: [
                     `এখানে একটি উদাহরণ বাক্য থাকবে: "${word}" ব্যবহার করা হয়েছে। (This is an example sentence using "${word}")`,
