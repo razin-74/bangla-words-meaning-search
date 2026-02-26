@@ -133,5 +133,50 @@
       "খণ্ড",
       "উপাংশ"
     ]
+  },
+  "sun": {
+    "word": "sun",
+    "meaning": "সৌরজ্যগতের কেন্দ্রবিন্দু নক্ষত্র, যা পৃথিবীকে আলো ও তাপ প্রদান করে",
+    "pronunciation": "shuryo",
+    "examples": [
+      "সূর্য প্রতিদিন পূর্বে উঠে। (The sun rises in the east every day.)",
+      "সূর্যের আলো আমাদের জন্য জীবনের উৎস। (The sun's light is the source of life for us.)",
+      "আমি সূর্যের তাপে গরম হয়ে যাচ্ছি। (I am getting warm in the sun's heat.)"
+    ],
+    "synonyms": [
+      "সূর্যদেব",
+      "রবি",
+      "সূর্যমুখ"
+    ]
+  },
+  "সন্তুষ্টি": {
+    "word": "সন্তুষ্টি",
+    "meaning": "সন্তুষ্টি হল মনকে সন্তোষ ও আনন্দে ভরিয়ে রাখার অনুভূতি; যা আছে তা থেকে সন্তুষ্টি পাওয়া।",
+    "pronunciation": "shon-too-shti",
+    "examples": [
+      "আমি আমার চাকরিতে সন্তুষ্টি পাই। (I find satisfaction in my job.)",
+      "সন্তুষ্টি মানে সবকিছু থাকা নয়, বরং যা আছে তা থেকে আনন্দ পাওয়া। (Satisfaction doesn't mean having everything, but finding joy in what you have.)",
+      "সহজ জীবনযাপনে সে সন্তুষ্টি অনুভব করে। (He experiences contentment in a simple life.)"
+    ],
+    "synonyms": [
+      "সন্তোষ",
+      "তৃপ্তি",
+      "সুস্থতা"
+    ]
+  },
+  "বিরয়ানী": {
+    "word": "বিরয়ানী",
+    "meaning": "এক ধরনের মসলাদার চাওল যেখানে মাংস, মাছ বা সবজি থাকে এবং বিশেষ মসলা দিয়ে রান্না করা হয়।",
+    "pronunciation": "bir-ee-yaa-nee",
+    "examples": [
+      "বিরয়ানী আমার প্রিয় খাবার। (Biryani is my favorite food.)",
+      "বিরয়ানী রান্না করা খুব কঠিন। (Cooking biryani is very difficult.)",
+      "বিরয়ানী খেলে সবাই খুশি হয়। (Everyone is happy when eating biryani.)"
+    ],
+    "synonyms": [
+      "পোলাও",
+      "মসলা চাওল",
+      "খাবেরি"
+    ]
   }
 }

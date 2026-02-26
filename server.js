@@ -112,8 +112,29 @@ app.post('/api/search', async (req, res) => {
                     }
 
                     const data = await response.json();
-                    const content = data.choices[0].message.content;
-                    aiResult = JSON.parse(content);
+
+                    if (!data.choices || !data.choices[0] || !data.choices[0].message) {
+                        throw new Error("Invalid response structure from OpenRouter: " + JSON.stringify(data));
+                    }
+
+                    let content = data.choices[0].message.content || "";
+
+                    // Remove reasoning <think> blocks if present
+                    content = content.replace(/<think>[\s\S]*?<\/think>/gi, '');
+                    // Remove markdown formatting
+                    content = content.replace(/```json/gi, '').replace(/```/g, '').trim();
+
+                    try {
+                        aiResult = JSON.parse(content);
+                    } catch (parseError) {
+                        // Fallback: try to extract JSON from text
+                        const jsonMatch = content.match(/\{[\s\S]*\}/);
+                        if (jsonMatch) {
+                            aiResult = JSON.parse(jsonMatch[0]);
+                        } else {
+                            throw new Error("Failed to parse JSON. Content: " + content.substring(0, 50));
+                        }
+                    }
 
                     if (aiResult) {
                         console.log(`Success with OpenRouter model: ${modelName}`);
